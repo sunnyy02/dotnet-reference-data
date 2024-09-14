@@ -12,10 +12,12 @@
 
   <ItemGroup>
     <None Remove="Services\" />
-    <None Remove="Services\Interface\" />
+    <None Remove="repo\" />
+    <None Remove="repo\Interface\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Services\Interface\" />
+    <Folder Include="repo\" />
+    <Folder Include="repo\Interface\" />
   </ItemGroup>
 </Project>
