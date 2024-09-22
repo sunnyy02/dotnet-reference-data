@@ -1,9 +1,10 @@
-﻿using DotNetReferenceData.Services;
+﻿using DotNetReferenceData.repo.Interface;
+using DotNetReferenceData.Services;
 using DotNetReferenceData.Services.Interface;
 
 namespace DotNetReferenceData;
 
-public class IndustryRepository : IIndustryRepo
+public class IndustryRepository : IRepositoryBase<IndustryDataDto>
 {
     public Task<IEnumerable<IndustryDataDto>> GetAll()
     {

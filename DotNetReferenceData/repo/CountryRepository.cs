@@ -1,9 +1,10 @@
-﻿using DotNetReferenceData.Services;
+﻿using DotNetReferenceData.repo.Interface;
+using DotNetReferenceData.Services;
 using DotNetReferenceData.Services.Interface;
 
 namespace DotNetReferenceData;
 
-public class CountryRepository : ICountryRepo
+public class CountryRepository : IRepositoryBase<CountryDataDto>
 {
     public Task<IEnumerable<CountryDataDto>> GetAll()
     {

@@ -1,6 +1,8 @@
-﻿using DotNetReferenceData.Services;
+﻿using DotNetReferenceData.repo.Interface;
+using DotNetReferenceData.Services;
 using DotNetReferenceData.Services.Interface;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel.Design;
 
 namespace DotNetReferenceData;
 
@@ -17,9 +19,11 @@ public static class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddScoped<ICountryRepo, CountryRepository>();
-        builder.Services.AddScoped<IIndustryRepo, IndustryRepository>();
+        builder.Services.AddScoped<IRepositoryBase<CountryDataDto>, CountryRepository>();
+        builder.Services.AddScoped<IRepositoryBase<IndustryDataDto>, IndustryRepository>();
         builder.Services.AddScoped<IReferenceDataService, ReferenceDataService>();
+        builder.Services.AddKeyedScoped<IRefdataStrategy, IndustryTypeStrategy>("industry");
+        builder.Services.AddKeyedScoped<IRefdataStrategy, CountryTypeStrategy>("country");
 
         var app = builder.Build();
 

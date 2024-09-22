@@ -7,23 +7,15 @@ public class ReferenceDataService : IReferenceDataService
 {
     private readonly ICountryRepo countryRepo;
     private readonly IIndustryRepo industryRepo;
-
-    public ReferenceDataService(ICountryRepo countryRepo, IIndustryRepo industryRepo)
+    private readonly IServiceProvider _keyedServiceProvider;
+    public ReferenceDataService(IServiceProvider keyedServiceProvider)
     {
-        this.countryRepo = countryRepo;
-        this.industryRepo = industryRepo;
+        this._keyedServiceProvider = keyedServiceProvider;
     }
 
     public async Task<IEnumerable<RefData>> GetRefDataByType(string refDataType)
     {
-        switch (refDataType)
-        {
-            case "industry":
-                return await this.industryRepo.GetAll();
-            case "country":
-                return await this.countryRepo.GetAll();
-            default:
-                throw new NotImplementedException();
-        }
+        var service = _keyedServiceProvider.GetRequiredKeyedService<IRefdataStrategy>(refDataType);
+        return await service.GetRefData();
     }
 }
