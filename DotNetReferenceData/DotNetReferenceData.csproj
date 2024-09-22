@@ -14,10 +14,12 @@
     <None Remove="Services\" />
     <None Remove="repo\" />
     <None Remove="repo\Interface\" />
+    <None Remove="Services\Interface\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="repo\" />
     <Folder Include="repo\Interface\" />
+    <Folder Include="Services\Interface\" />
   </ItemGroup>
 </Project>
